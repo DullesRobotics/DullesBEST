@@ -54,7 +54,7 @@ task main()
 		}
 		*/
 		while(true)
-		{
+	{
 		if(SensorValue[sonarinput] > 10){
 			motor[FLM] = 100;
 			motor[FRM] = 100;
@@ -67,6 +67,7 @@ task main()
 			motor[BLM] = -100;
 			motor[BRM] = -100;
 		}
+	}
 	}
 
 	}
