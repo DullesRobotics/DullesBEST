@@ -8,20 +8,20 @@
 //http://www.robotc.net/wikiarchive/VEX2_Functions_Remote_Control_-_VEXnet#vexRT
 
 int FLMspeed, FRMspeed, BLMspeed,BRMspeed;
-int rJoyX,rJoyY,lJoyX,lJoyY,xAccel,yAccel,zAccel,B8R,B8L;
+int rJoyX,rJoyY,lJoyX,lJoyY,xAccel,yAccel,zAccel,B8R,B8L,B8U,B8D,B5U,B5D,B6U,B6D;
 int B8RprevVal,B8LprevVal = 0;
 int DEFAULT_CONTROL_MODE = 1;
 int controlMode = DEFAULT_CONTROL_MODE;
 int prevMode = DEFAULT_CONTROL_MODE;
+bool flashLightisOn = false;
 /***
 1 - arcade
 2 - tank
 3 - Acceleration
 4 - Velocity Mode
 5 - Autonomous Mode
-6 - ???
 ***/
-int NUM_TOTAL_OP_MODES = 6; // I tried #define but it didnt work for some reason
+int NUM_TOTAL_OP_MODES = 5; // I tried #define but it didnt work for some reason
 float prevTime;
 float dx;
 int velx,vely = 0;
@@ -37,6 +37,12 @@ void readController()//method dec has to be before calling it or it wont work - 
 	zAccel = vexRT[AccelZ];
 	B8R = vexRT[Btn8R];
 	B8L = vexRT[Btn8L];
+	B8U = vexRT[Btn8U];
+	B8D = vexRT[Btn8D];
+	B5U = vexRT[Btn5U];
+	B5D = vexRT[Btn5D];
+	B6U = vexRT[Btn6U];
+	B6D = vexRT[Btn6D];
 }
 task flashControlMode()//run in parallel w/ rest of code
 {
@@ -140,12 +146,22 @@ task main()
 		else if(controlMode == 5)
 		{
 			if(SensorValue[sonarinput] > 10){
+				if(flashLightisOn)
+				{
+					turnFlashlightOff(light);
+					flashLightisOn = false;
+				}
 				motor[FLM] = 100;
 				motor[FRM] = 100;
 				motor[BLM] = 100;
 				motor[BRM] = 100;
 			}
 			else{
+				if(!flashLightisOn)
+				{
+					turnFlashlightOn(light, -127);
+					flashLightisOn = true;
+				}
 				motor[FLM] = -100;
 				motor[FRM] = -100;
 				motor[BLM] = -100;
@@ -153,9 +169,6 @@ task main()
 			}
 
 		}
-		else if(controlMode == 6)
-		{
-			//Mode 4
-		}
+
 	}//end While
 }
