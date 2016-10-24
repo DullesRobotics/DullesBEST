@@ -1,4 +1,4 @@
-int FLMspeed, FRMspeed, BLMspeed,BRMspeed;
+int FLMspeed, FRMspeed;
 int rJoyX,rJoyY,lJoyX,lJoyY,xAccel,yAccel,zAccel,B8R,B8L,B8U,B8D,B5U,B5D,B6U,B6D = 0;
 void readController()//method dec has to be before calling it or it wont work - at least when I tried it
 {
@@ -22,19 +22,19 @@ void setMotorsToRespectiveSpeeds()
 {
 			motor[FLM] = FLMspeed;
 			motor[FRM] = FRMspeed;
-			motor[BLM] = BLMspeed;
-			motor[BRM] = BRMspeed;
+			//motor[BLM] = BLMspeed;
+			//motor[BRM] = BRMspeed;
 }
 void arcadeDriveLoopContent()
 {
 		readController();
 		FLMspeed = (rJoyY + rJoyX);
-		BLMspeed = (rJoyY + rJoyX);
+		//BLMspeed = (rJoyY + rJoyX);
 		FRMspeed = (rJoyY - rJoyX);
-		BRMspeed = (rJoyY - rJoyX);
+		//BRMspeed = (rJoyY - rJoyX);
 		setMotorsToRespectiveSpeeds();
 }
-void tankDriveLoopContent()
+/*void tankDriveLoopContent()
 {
 		readController();
 		FLMspeed = lJoyY;
@@ -51,4 +51,4 @@ void accelDriveLoopContent()
 		FRMspeed = (yAccel - xAccel);
 		BRMspeed = (yAccel - xAccel);
 		setMotorsToRespectiveSpeeds();
-}
+}*/
