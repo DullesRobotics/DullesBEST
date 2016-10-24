@@ -68,11 +68,11 @@ task main()
 		}
 		else if(controlMode == 2)//Tank Mode
 		{
-			tankDriveLoopContent();
+			//tankDriveLoopContent();
 		}
 		else if(controlMode == 3)//Accel Mode
 		{
-			accelDriveLoopContent();
+			//accelDriveLoopContent();
 		}
 
 		else if(controlMode == 4)
