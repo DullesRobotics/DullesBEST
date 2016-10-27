@@ -1,4 +1,4 @@
-int FLMspeed, FRMspeed,clawUDSpeed,clawOCSpeed, scoopUDSpeed;
+int FLMspeed, FRMspeed,clawUDSpeed,clawOCSpeed, scoopUDSpeed, BaseServoLSpeed,BaseServoRSpeed;
 int rJoyX,rJoyY,lJoyX,lJoyY,xAccel,yAccel,zAccel,B8R,B8L,B8U,B8D,B5U,B5D,B6U,B6D = 0;
 void readController()//method dec has to be before calling it or it wont work - at least when I tried it
 {
@@ -21,9 +21,11 @@ void readController()//method dec has to be before calling it or it wont work - 
 }
 void setMotorsToRespectiveSpeeds()
 {
-			motor[FLM] = FLMspeed;
-			motor[FRM] = FRMspeed;
-			motor[ClawUpDown] = clawUDSpeed;
-			motor[ClawOpenClose] = clawOCSpeed;
-			motor[ScoopUD];
+	motor[FLM] = FLMspeed;
+	motor[FRM] = FRMspeed;
+	motor[ClawUpDown] = clawUDSpeed;
+	motor[ClawOpenClose] = clawOCSpeed;
+	motor[ScoopUD] = scoopUDSpeed;
+	motor[BaseServoL] = BaseServoLSpeed;
+	motor[BaseServoR] = BaseServoRSpeed;
 }
